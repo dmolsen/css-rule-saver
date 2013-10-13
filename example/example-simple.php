@@ -8,14 +8,14 @@
  *
  */
 
-require "css-rule-saver.php";
+require "../css-rule-saver.php";
 
 // initialize the class
 $crs = new cssRuleSaver;
 
 // load the CSS & HTML files to compare
-$crs->loadCSS("example-data/example.css");
-$crs->loadHTML("example-data/example.html");
+$crs->loadCSS("example.css");
+$crs->loadHTML("example.html");
 
 // save only the CSS rules that affect the given piece of mark-up
 $results = $crs->saveRules();

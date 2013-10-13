@@ -8,17 +8,17 @@
  *
  */
 
-require "css-rule-saver.php";
+require "../css-rule-saver.php";
 
 // initialize the class
 $crs = new cssRuleSaver;
 
 // load the CSS & HTML files to compare
-$crs->loadCSS("example-data/example.css");
+$crs->loadCSS("example.css");
 
 $files = array("1.html","2.html","3.html");
 foreach ($files as $file) {
-	$crs->loadHTML("example-data/".$file);
+	$crs->loadHTML($file);
 	$results = $crs->saveRules();
 	print "Results for ".$file.":\n";
 	print $results;
