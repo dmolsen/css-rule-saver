@@ -35,9 +35,10 @@ require "css-rule-saver.php";
 // initialize the class
 $crs = new cssRuleSaver;
 
-// load the CSS & HTML files to compare
+// load the CSS file to compare
 $crs->loadCSS("example.css");
 
+// loop over a list of files & print out the matching rules
 $files = array("1.html","2.html","3.html");
 foreach ($files as $file) {
 	$crs->loadHTML($file);
