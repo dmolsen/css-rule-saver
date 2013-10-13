@@ -18,8 +18,8 @@ require "css-rule-saver.php";
 $crs = new cssRuleSaver;
 
 // load the CSS & HTML files to compare
-$crs->loadCSS("example-data/example.css");
-$crs->loadHTML("example-data/example.html");
+$crs->loadCSS("example.css");
+$crs->loadHTML("example.html");
 
 // save only the CSS rules that affect the given piece of mark-up
 $results = $crs->saveRules();
@@ -36,11 +36,11 @@ require "css-rule-saver.php";
 $crs = new cssRuleSaver;
 
 // load the CSS & HTML files to compare
-$crs->loadCSS("example-data/example.css");
+$crs->loadCSS("example.css");
 
 $files = array("1.html","2.html","3.html");
 foreach ($files as $file) {
-	$crs->loadHTML("example-data/".$file);
+	$crs->loadHTML($file);
 	$results = $crs->saveRules();
 	print "Results for ".$file.":\n";
 	print $results;
