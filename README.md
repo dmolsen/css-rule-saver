@@ -55,4 +55,4 @@ foreach ($files as $file) {
 
 ## Credits
 
-This library relies on php-selector developed by TJ Holowaychuk and improved by others.
+This library relies on [php-selector](https://github.com/visionmedia/php-selector) developed by TJ Holowaychuk and improved by @darhazer and @kafene.
