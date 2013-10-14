@@ -1,11 +1,15 @@
 CSS Rule Saver
 ==============
 
-CSS Rule Saver compares a list of CSS rules against an HTML file to see which rules apply and should be saved. Useful if you require only a subset of CSS rules for a page or project.
+CSS Rule Saver works in much the same way that a browser might. It compares a list of CSS rules (e.g. `.foo { color: white; }` ) from a CSS file against an HTML file using the CSS selector (e.g. `.foo` ) to see which rules apply and should be saved. This might be useful if you have a large Sass-generated CSS file or framework but only need the sub-set of styles that may affect a small piece of mark-up.
 
 ## Robustness
 
-I'm not positive this is the most robust solution yet. It works for the examples I'm working with but your mileage may vary. If something is missing or if selectors aren't recognized let me know. I also haven't optimized for memory usage or speed.
+This is not a very robust solution. It appears to work well on the examples I have but your mileage may vary. Pseudo-classes are ignored and instead the base selector for a pseudo-class is compared. I may also be missing selector or at-rule methods. Feel free to drop an issue if you notice this.
+
+At the moment, CSS Rule Saver *does not* overwrite values for specific properties. Instead, it stacks declaration blocks for a specific selector. It works but it's a little verbose. I plan on fixing that.
+
+CSS Rule Saver has not had any optimizations for speed or memory usage.
 
 ## Usage
 
