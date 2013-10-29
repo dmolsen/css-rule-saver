@@ -17,6 +17,7 @@ class cssRuleSaver {
 	protected $htmlData = "";
 	protected $ruleSets = array();
 	protected $atRules  = array();
+	protected $dom;
 	
 	/**
 	* Load the CSS data into the $this->ruleSets and $this->atRules arrays
@@ -154,12 +155,12 @@ class cssRuleSaver {
 		}
 		
 		// set-up the selector DOM to compare
-		$dom = new SelectorDOM($this->htmlData);
+		$this->dom = new SelectorDOM($this->htmlData);
 		
 		// iterate over the default rule sets and test them against the given mark-up
 		$statements = "";
 		foreach ($this->ruleSets as $selector => $declarationBlock) {
-			$statements .= $this->buildRuleSet($dom,$selector,$declarationBlock);
+			$statements .= $this->buildRuleSet($selector,$declarationBlock);
 		}
 		
 		// iterate over the at-rules
@@ -168,7 +169,7 @@ class cssRuleSaver {
 			// iterate over the rule sets in the at-rules and test them against the given mark-up
 			$atRuleSets = "";
 			foreach ($ruleSets as $selector => $declarationBlock) {
-				$atRuleSets .= $this->buildRuleSet($dom,$selector,$declarationBlock,"\t");
+				$atRuleSets .= $this->buildRuleSet($selector,$declarationBlock,"\t");
 			}
 			
 			if ($atRuleSets != "") {
@@ -190,20 +191,21 @@ class cssRuleSaver {
 			}
 		}
 		
+		unset($this->dom);
+		
 		return $statements;
 		
 	}
 	
 	/**
 	* Compare the given selector(s) against the DOM. Return the rule set if it matches
-	* @param  {XPath}        i think this is the DOM xPath
 	* @param  {String}       the selector(s) to test against the xPath
 	* @param  {String}       the declaration block that goes with the selector
 	* @param  {String}       any indent characters that might need to be added to the final output
 	*
 	* @return {String}       if the selector(s) matched return the entire rule set with matches
 	*/
-	protected function buildRuleSet($dom,$selector,$declarationBlock,$indent = "") {
+	protected function buildRuleSet($selector,$declarationBlock,$indent = "") {
 		
 		// trap the selectors that are found
 		$foundSelectors = array();
@@ -228,7 +230,7 @@ class cssRuleSaver {
 			}
 			
 			// match the selector against the DOM. if result is found save the original selector format
-			if (count($dom->select($selector)) > 0) {
+			if (count($this->dom->select($selector)) > 0) {
 				$foundSelectors[] = $selectorOrig;
 			}
 		}
