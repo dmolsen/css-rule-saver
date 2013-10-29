@@ -1,7 +1,7 @@
 <?php
 
 /*!
- * CSS Rule Saver - v0.1.0
+ * CSS Rule Saver - v0.2.0
  *
  * Copyright (c) 2013 Dave Olsen, http://dmolsen.com
  * Licensed under the MIT license
