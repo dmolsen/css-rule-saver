@@ -126,13 +126,18 @@ class cssRuleSaver {
 	
 	/**
 	* Load the HTML data
-	* @param  {String}       the filename of the HTML file
+	* @param  {String}       the filename of the HTML file to load or the data to be put into htmlData
+	* @param  {Boolean}      whether to load a file or just use data already being passed to the function
 	*/
-	public function loadHTML($file) {
-		if (file_exists($file)) {
-			$this->htmlData = file_get_contents($file);
+	public function loadHTML($file,$load = true) {
+		if ($load) {
+			if (file_exists($file)) {
+				$this->htmlData = file_get_contents($file);
+			} else {
+				$this->error("The HTML file you supplied doesn't seem to exist. Check the path.");
+			}
 		} else {
-			$this->error("The HTML file you supplied doesn't seem to exist. Check the path.");
+			$this->htmlData = $file;
 		}
 	}
 	
